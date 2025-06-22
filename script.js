@@ -15,11 +15,17 @@ const apiUrl = "https://icanhazdadjoke.com/";
 // }
 // generateJoke();
 async function generateJoke(){
+    try{
     const res =  await fetch(apiUrl, {headers: {Accept: 'application/json',},});
     // console.log(res);
     const data =await res.json();
     // console.log(data.joke);
     jokesContent.textContent=data.joke;
+    }
+    catch(error){
+        jokesContent.textContent=error;
+        // console.log(error);
+    }
 }
 generateJoke();
 button.addEventListener('click', generateJoke)
